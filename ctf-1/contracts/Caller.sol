@@ -18,6 +18,6 @@ contract Caller {
         require(success);
 
         require(switches[msg.sender], "msg.sender's switch is false");
-        Flag(flag).mint(msg.sender);
+        Flag(flag).mint(tx.origin);
     }
 }
