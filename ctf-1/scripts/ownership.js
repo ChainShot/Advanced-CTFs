@@ -1,8 +1,8 @@
-const FLAG_ADDRESS = "0x3C60519F734E0Bc7dba0e2ad30D372D0a9E8aE03";
-const CONTRACT_ADDRESS = "0xFb9AF15E418DDcF1B4653b334090332dE6917E28";
+const FLAG_ADDRESS = "0x16aAA5361F3E29F8e3BbCA64472d39399E303d1F";
+const CONTRACT_ADDRESS = "0x93A520FDb31704837Da757235A60CbD18b381b8E";
 
 async function main() {
-    const flag = await ethers.getContractAt("BlueFlag", FLAG_ADDRESS);
+    const flag = await ethers.getContractAt("YellowFlag", FLAG_ADDRESS);
 
     await flag.transferOwnership(CONTRACT_ADDRESS);
 }

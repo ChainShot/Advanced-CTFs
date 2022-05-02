@@ -5,12 +5,12 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract YellowFlag is ERC721, Ownable {
+contract BlueFlag is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("YellowFlag", "YLL") {}
+    constructor() ERC721("BlueFlag", "BLU") {}
 
     function mint(address to) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
