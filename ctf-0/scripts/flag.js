@@ -1,5 +1,5 @@
 async function main() {
-  const Flag = await ethers.getContractFactory("BlueFlag");
+  const Flag = await ethers.getContractFactory("YellowFlag");
   const flag = await Flag.deploy();
   await flag.deployed();
 
