@@ -14,15 +14,18 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const flag = await hre.ethers.getContractAt("GreenFlag", "0x19d4e9bfd551D478814EC686113Ba9Ffa1638407")
+  const flag = await hre.ethers.getContractAt("RedFlag", "0x19d4e9bfd551D478814EC686113Ba9Ffa1638407")
   console.log("Red Flag address:", flag.address);
 
+  // Get the current token index
+  var tokenIdx = await flag.tokenIdCounter();
+  console.log("tokenIdx: " + tokenIdx);
   // XXX: Set the correct answer and value here!
   var answer = 10;
   var value = 100;
 
   // Mint the NFT!
-  var tx = await flag.mint(answer);
+  var tx = await flag.mint(answer, value);
   await tx.wait();
 }
 
