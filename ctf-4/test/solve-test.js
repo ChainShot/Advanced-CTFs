@@ -8,8 +8,6 @@ describe("Greeter", function () {
   
     await flag.deployed();
   
-    console.log("Red Flag deployed to:", flag.address);
-
     // Get the current token index
     var tokenIdx = await flag.tokenIdCounter();
 
@@ -30,8 +28,6 @@ describe("Greeter", function () {
   
     await flag.deployed();
   
-    console.log("Red Flag deployed to:", flag.address);
-
     // Get the current token index
     var tokenIdx = await flag.tokenIdCounter();
 
@@ -50,8 +46,6 @@ describe("Greeter", function () {
   
     await flag.deployed();
   
-    console.log("Red Flag deployed to:", flag.address);
-
     // Get the current token index
     var tokenIdx = await flag.tokenIdCounter();
 
@@ -63,5 +57,76 @@ describe("Greeter", function () {
     var tx = flag.mint(answer, value);
 
     expect(tx).to.be.revertedWith("Wrong value! (Use the minimum value needed!)");
+  });
+  it("Should solve the challenge", async function () {
+    const Challenge = await hre.ethers.getContractFactory("Challenge2");
+    const challenge = await Challenge.deploy();
+  
+    await challenge.deployed();
+  
+    const [wallet] = await ethers.getSigners();
+
+    // keccak256("doCalc()")
+    var func_selector = "0xe6581e4c"
+    var answer = 10;
+    var packed_data = ethers.utils.solidityPack(["bytes4", "uint"], [func_selector, answer]);
+  
+    // XXX: One additional override must be set here
+    var tx = await wallet.sendTransaction({
+      value: ethers.utils.parseUnits("100", "wei"),
+      to: challenge.address,
+      data: packed_data,
+    });
+
+    var rec = await tx.wait();
+    expect(rec.logs.length).to.not.equal(0);
+  });
+  it("Should not solve the challenge (wrong answer)", async function () {
+
+    const Challenge = await hre.ethers.getContractFactory("Challenge2");
+    const challenge = await Challenge.deploy();
+  
+    await challenge.deployed();
+  
+    const [wallet] = await ethers.getSigners();
+
+    // keccak256("doCalc()")
+    var func_selector = "0xe6581e4c"
+    var answer = 42;
+    var packed_data = ethers.utils.solidityPack(["bytes4", "uint"], [func_selector, answer]);
+  
+    // XXX: One additional override must be set here
+    var tx = wallet.sendTransaction({
+      value: ethers.utils.parseUnits("100", "wei"),
+      to: challenge.address,
+      data: packed_data,
+    });
+
+    expect(tx).to.be.revertedWith("");
+
+  });
+  it("Should not solve the challenge (wrong value)", async function () {
+
+    const Challenge = await hre.ethers.getContractFactory("Challenge2");
+    const challenge = await Challenge.deploy();
+  
+    await challenge.deployed();
+  
+    const abi = ["event Winner(address winnerAddr)"];
+    const [wallet] = await ethers.getSigners();
+
+    // keccak256("doCalc()")
+    var func_selector = "0xe6581e4c"
+    var answer = 10;
+    var packed_data = ethers.utils.solidityPack(["bytes4", "uint"], [func_selector, answer]);
+  
+    // XXX: One additional override must be set here
+    var tx = wallet.sendTransaction({
+      value: ethers.utils.parseUnits("50", "wei"),
+      to: challenge.address,
+      data: packed_data,
+    });
+
+    expect(tx).to.be.revertedWith("");
   });
 });
