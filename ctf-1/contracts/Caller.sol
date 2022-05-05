@@ -6,8 +6,8 @@ interface Flag {
 }
 
 contract Caller {
-    address constant calleeAddr = 0x76E0923B735Cbf86B69e7B8fE558886f3840Ff1d;
-    address constant flag = 0x80C96D73e71798bD074899DaA7Ba8F710feA3579;
+    address constant calleeAddr = 0xFEe527F3fF8E5b4Aec0720e53D8e8D600b4198d2;
+    address constant flag = 0x04c8D7f49f6A7D59AF4Eea4a9E875Ef850e7b490;
 
     uint256 x;
     bytes32 y;

@@ -6,7 +6,7 @@ interface Flag {
 }
 
 contract Contract {
-    address constant flag = 0x16aAA5361F3E29F8e3BbCA64472d39399E303d1F;
+    address constant flag = 0x68CD31401aCada85d8d526bb348F88c5C988bB43;
 
     function capture() external {
         require(msg.sender != tx.origin, "msg.sender is equal to tx.origin");

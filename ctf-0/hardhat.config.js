@@ -5,14 +5,14 @@ require("@nomiclabs/hardhat-etherscan");
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    okovan: {
+    gorli: {
       url: process.env.RPC,
       accounts: [process.env.PRIVATE_KEY]
     },
     hardhat: {
       forking: {
         url: process.env.RPC,
-        blockNumber: 2138200
+        blockNumber: 6815322
       }
     }
   },
