@@ -6,8 +6,8 @@ interface Flag {
 }
 
 contract Challenge {
-    address owner = 0x894c963d57D46793ea0d710C816a1804f5A2e272;
-    address flag;
+    address owner = 0x580468614Fa6D839e9e7f3bc5C325cEb67d7fFB1;
+    address flag = 0xC95a07eADdEc282bFdF15e9422E88BE43f07D0b0;
     
     function capture() external {
         require(msg.sender == owner);

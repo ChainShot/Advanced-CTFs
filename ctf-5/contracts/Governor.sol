@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract Governor {
-    ERC20 votingToken;
+    ERC20 votingToken = ERC20(0x2c9090cEFC236040D87CFFE8292d90e4c92f5728);
 
     struct Proposal {
         uint votesFor;
@@ -19,10 +19,6 @@ contract Governor {
     }
 
     Proposal[] proposals;
-
-    constructor(ERC20 votingToken_) {
-        votingToken = votingToken_;
-    }
 
     function addProposal(bytes calldata payload, address to) external returns(uint proposalId) {
         proposalId = proposals.length;
