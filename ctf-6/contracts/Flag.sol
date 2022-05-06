@@ -10,7 +10,7 @@ contract Flag is ERC721, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("FlagSeven", "FLG") {}
+    constructor() ERC721("VioletFlag", "FLG") {}
 
     function mint(address to) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();

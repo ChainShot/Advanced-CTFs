@@ -2,7 +2,7 @@ const ethers = require("ethers");
 const flashbot = require("@flashbots/ethers-provider-bundle");
 require("dotenv").config();
 
-const FLAG_ADDRESS = "0x442c8ce43362c096c7e4870f095192c7649489b6";
+const FLAG_ADDRESS = "0xfe686b22a5a9b3f8424fd2e27152519dd5587a00";
 // NOTE: this is a compromised key, never use this for anything! 
 const COMPROMISED_KEY = "ae44b534caed76e8c37d0d832209963a3380261fc0098203322296d9f1e65ea3";
 

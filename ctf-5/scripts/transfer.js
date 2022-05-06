@@ -6,7 +6,7 @@ const addrs = [
     // "0x6660bb5e750213c94704351364605bf016002d3D", // nomad
     // "0x081551eB0B927e16FbF9Df108EDD7Ab265aca8c1", // rocky
     // "0xdb9B01B0A3dB8bF7Ec84F5e3cA30EA838bC26b16", // russell
-    "0x847Fc5F44f1cFEeB4e8B9f1368dD4d6295db4972", // angel
+    // "0x847Fc5F44f1cFEeB4e8B9f1368dD4d6295db4972", // angel
     // "0x1A4B691738C9c8Db8f2EDf0b9207f6acb24ADF07", // hunter
     // "0x3e6a2B9D58314D81234465eE778CF2794dA4E430", // wgmi
     // "0x8670fE61d64DC60B9e99167E14E69676f3AD3707", // isaiah
@@ -15,21 +15,21 @@ const addrs = [
     // "0xA6e6031B4AB3Ae42d30a661E24545403A26Aba83", // titus
     // "0xD50864C283D4751469BE05274C69Ab3829317aF5", // wanaks
     // "0xdb634749715fB7b5B9aD6dF27A2060FE3fF7bd3e", // AUQIB
-    // "0xb3952Fab7a3d070A0d6094a478E4D0a93AC21422", // karate
-    // "0xa200200E05eC9AB93f694fe80F0b88F23be0fBdE", // francois
-    // "0x099A9BC363f28041842E02F89A4Af21007a9dbA8", // cday
+    "0xb3952Fab7a3d070A0d6094a478E4D0a93AC21422", // karate
+    "0xa200200E05eC9AB93f694fe80F0b88F23be0fBdE", // francois
+    "0x099A9BC363f28041842E02F89A4Af21007a9dbA8", // cday
 ];
 
-const ten = ethers.utils.parseEther("10");
+const amount = ethers.utils.parseEther("100");
 
-async function approve() {
-    const token = await ethers.getContractAt("SafeToken", "0xbAcc21137F1B0CA03d7e796CCc1E1d47DD9fe839");
+async function transfer() {
+    const token = await ethers.getContractAt("Buffalol", "0x2c9090cEFC236040D87CFFE8292d90e4c92f5728");
 
     for(let i = 0; i < addrs.length; i++) {
-        const tx = await token.approve(addrs[i], ten);
+        const tx = await token.transfer(addrs[i], amount);
         await tx.wait();
         console.log(i);
     }
 }
 
-approve();
+transfer();
